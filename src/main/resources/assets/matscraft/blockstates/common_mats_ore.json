@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "matscraft:block/common_mats_ore"
+    }
+  }
+}

@@ -1,4 +1,6 @@
 {
   "item.matscraft.mats": "Mats",
-  "item.matscraft.matt_luongo": "Matt Luongo"
+  "item.matscraft.matt_luongo": "Matt Luongo",
+
+  "block.matscraft.common_mats_ore": "Common Mats Ore"
 }
