@@ -15,7 +15,7 @@ import net.minecraft.util.Identifier;
 public class ModBlocks {
     public static final Block COMMON_MATS_ORE = registerBlock("common_mats_ore",
             new Block(AbstractBlock.Settings.create().strength(4f)
-                    .requiresTool().sounds(BlockSoundGroup.AMETHYST_BLOCK)));
+                    .requiresTool().sounds(BlockSoundGroup.METAL)));
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
