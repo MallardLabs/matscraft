@@ -7,8 +7,8 @@ import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.text.Text;
 
 public class CustomHudRenderer implements HudRenderCallback {
-    private String firstLine = "matsCraft v0.0.1 alpha";
-    private String secondLine = "by Mallard Labs";
+    private String firstLine = "";
+    private String secondLine = "";
 
     @Override
     public void onHudRender(DrawContext drawContext, RenderTickCounter tickCounter) {

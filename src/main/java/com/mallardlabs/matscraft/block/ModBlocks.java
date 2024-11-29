@@ -17,6 +17,22 @@ public class ModBlocks {
             new Block(AbstractBlock.Settings.create().strength(4f)
                     .requiresTool().sounds(BlockSoundGroup.METAL)));
 
+    public static final Block UNCOMMON_MATS_ORE = registerBlock("uncommon_mats_ore",
+            new Block(AbstractBlock.Settings.create().strength(4f)
+                    .requiresTool().sounds(BlockSoundGroup.METAL)));
+
+    public static final Block RARE_MATS_ORE = registerBlock("rare_mats_ore",
+            new Block(AbstractBlock.Settings.create().strength(4f)
+                    .requiresTool().sounds(BlockSoundGroup.METAL)));
+
+    public static final Block EPIC_MATS_ORE = registerBlock("epic_mats_ore",
+            new Block(AbstractBlock.Settings.create().strength(4f)
+                    .requiresTool().sounds(BlockSoundGroup.METAL)));
+
+    public static final Block LEGENDARY_MATS_ORE = registerBlock("legendary_mats_ore",
+            new Block(AbstractBlock.Settings.create().strength(4f)
+                    .requiresTool().sounds(BlockSoundGroup.METAL)));
+
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
         return Registry.register(Registries.BLOCK, Identifier.of(MatsCraft.MOD_ID, name), block);
@@ -31,6 +47,10 @@ public class ModBlocks {
         MatsCraft.LOGGER.info("Registering Mod Blocks for " + MatsCraft.MOD_ID);
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> {
             entries.add(ModBlocks.COMMON_MATS_ORE);
+            entries.add(ModBlocks.UNCOMMON_MATS_ORE);
+            entries.add(ModBlocks.RARE_MATS_ORE);
+            entries.add(ModBlocks.EPIC_MATS_ORE);
+            entries.add(ModBlocks.LEGENDARY_MATS_ORE);
         });
     }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "matscraft:block/common_mats_ore"
+    "all": "matscraft:block/rare_mats_ore"
   }
 }
