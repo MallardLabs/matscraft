@@ -6,5 +6,9 @@
   "block.matscraft.uncommon_mats_ore": "Uncommon Mats Ore",
   "block.matscraft.rare_mats_ore": "Rare Mats Ore",
   "block.matscraft.epic_mats_ore": "Epic Mats Ore",
-  "block.matscraft.legendary_mats_ore": "Legendary Mats Ore"
+  "block.matscraft.legendary_mats_ore": "Legendary Mats Ore",
+
+  "itemgroup.matscraft.matsfi_items": "matsFi",
+  "itemgroup.matscraft.mats_ore_blocks": "mats Ores"
+
 }

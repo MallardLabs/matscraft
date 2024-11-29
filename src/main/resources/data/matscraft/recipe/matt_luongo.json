@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "matsFi",
+  "key" : {
+    "#": {
+      "item": "matscraft:mats"
+    }
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "matscraft:matt_luongo"
+  }
+}

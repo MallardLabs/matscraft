@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "matsFi",
+  "ingredients": [
+    {
+      "item": "matscraft:matt_luongo"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "matscraft:mats"
+  }
+}

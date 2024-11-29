@@ -1,6 +1,7 @@
 package com.mallardlabs.matscraft;
 
 import com.mallardlabs.matscraft.block.ModBlocks;
+import com.mallardlabs.matscraft.item.ModItemGroups;
 import com.mallardlabs.matscraft.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 
@@ -13,6 +14,7 @@ public class MatsCraft implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		ModItemGroups.registerItemGroups();
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
 	}
