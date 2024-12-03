@@ -1,6 +1,7 @@
 package com.mallardlabs.matscraft.block;
 
 import com.mallardlabs.matscraft.MatsCraft;
+import com.mallardlabs.matscraft.block.custom.MagicBlock;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -34,6 +35,9 @@ public class ModBlocks {
     public static final Block LEGENDARY_MATS_ORE = registerBlock("legendary_mats_ore",
             new ExperienceDroppingBlock(UniformIntProvider.create(7,10),
                     AbstractBlock.Settings.create().strength(4f).requiresTool().sounds(BlockSoundGroup.METAL)));
+
+    public static final Block MAGIC_BLOCK = registerBlock("magic_block",
+            new MagicBlock(AbstractBlock.Settings.create().strength(1f).requiresTool()));
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);

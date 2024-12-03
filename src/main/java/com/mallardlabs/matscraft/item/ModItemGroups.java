@@ -19,6 +19,8 @@ public class ModItemGroups {
                         entries.add((ModItems.MATS));
                         entries.add((ModItems.MATT_LUONGO));
 
+                        entries.add(ModItems.CHAINSAW);
+
                     }).build());
 
     public static final ItemGroup MATS_ORE_BLOCKS_GROUP = Registry.register(Registries.ITEM_GROUP,
@@ -31,6 +33,8 @@ public class ModItemGroups {
                         entries.add((ModBlocks.RARE_MATS_ORE));
                         entries.add((ModBlocks.EPIC_MATS_ORE));
                         entries.add((ModBlocks.LEGENDARY_MATS_ORE));
+
+                        entries.add((ModBlocks.MAGIC_BLOCK));
 
                     }).build());
 
