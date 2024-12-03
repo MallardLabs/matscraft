@@ -1,0 +1,7 @@
+// 1.21.1	2024-12-03T10:45:32.915144	matsCraft/Block Loot Tables
+8be942bc169c39f24d177ddfabe2c08f9b374ea1 data/matscraft/loot_table/blocks/common_mats_ore.json
+c7b6e9ca197486551392072e49e062b41f4fea7e data/matscraft/loot_table/blocks/legendary_mats_ore.json
+c967525f687091bf824783b79ed9981752891a30 data/matscraft/loot_table/blocks/epic_mats_ore.json
+3e93474ddf64bae7a45c5be9cdba51885a62356d data/matscraft/loot_table/blocks/magic_block.json
+f3465bbc7593df2f349198aec6625cb44907e8ac data/matscraft/loot_table/blocks/uncommon_mats_ore.json
+bcc706bb384437143082826780ffba6352a43b81 data/matscraft/loot_table/blocks/rare_mats_ore.json

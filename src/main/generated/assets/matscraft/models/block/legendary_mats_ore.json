@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "matscraft:block/legendary_mats_ore"
+  }
+}

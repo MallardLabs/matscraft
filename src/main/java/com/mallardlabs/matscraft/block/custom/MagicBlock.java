@@ -1,6 +1,7 @@
 package com.mallardlabs.matscraft.block.custom;
 
 import com.mallardlabs.matscraft.item.ModItems;
+import com.mallardlabs.matscraft.util.ModTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
@@ -30,13 +31,13 @@ public class MagicBlock extends Block {
     public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
         if(entity instanceof ItemEntity item) {
             if(isValidItem(item.getStack())) {
-                item.setStack((new ItemStack(ModItems.MATT_LUONGO, item.getStack().getCount())));
+                item.setStack((new ItemStack(ModItems.CHAINSAW, item.getStack().getCount())));
             }
         }
         super.onSteppedOn(world, pos, state, entity);
     }
 
     private boolean isValidItem(ItemStack stack) {
-        return stack.getItem() == ModItems.MATS || stack.getItem() == Items.COAL;
+        return stack.isIn(ModTags.Items.TRANSFORMABLE_ITEMS);
     }
 }

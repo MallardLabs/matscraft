@@ -15,6 +15,7 @@ public class ModItems {
 
     public static final Item MATS = registerItem("mats", new Item(new Item.Settings()));
     public static final Item MATT_LUONGO = registerItem("matt_luongo", new Item(new Item.Settings()));
+    public static final Item LOWPOLYDUCK = registerItem("lowpolyduck", new Item(new Item.Settings()));
 
     public static final Item CHAINSAW = registerItem("chainsaw", new ChainsawItem(new Item.Settings().maxDamage(32)));
 
