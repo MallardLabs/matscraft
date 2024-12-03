@@ -18,7 +18,7 @@ public class ModItemGroups {
                     .entries((displayContext, entries) -> {
                         entries.add((ModItems.MATS));
                         entries.add((ModItems.MATT_LUONGO));
-
+                        entries.add((ModItems.LOWPOLYDUCK));
                         entries.add(ModItems.CHAINSAW);
 
                     }).build());

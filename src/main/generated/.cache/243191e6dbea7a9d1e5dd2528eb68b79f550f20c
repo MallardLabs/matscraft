@@ -1,11 +1,11 @@
-// 1.21.1	2024-12-03T10:45:32.914596	matsCraft/Model Definitions
+// 1.21.1	2024-12-03T11:20:21.190844	matsCraft/Model Definitions
 8f7a3e8f0640e4d3756a8664101e521751db70e7 assets/matscraft/blockstates/magic_block.json
 bf6b9b1bfb125e682ffce2eb1fada1fdcfc2d232 assets/matscraft/models/item/epic_mats_ore.json
 b694940162176b60289354b29becc558f97393ca assets/matscraft/models/item/matt_luongo.json
 4bb3b7485cb377fecaf84bf8996dededc8fbff48 assets/matscraft/models/block/uncommon_mats_ore.json
 d01a1869fe6d55b0f72966c86ebd8739edddf59f assets/matscraft/blockstates/common_mats_ore.json
-5a22a5025058729309f24f1427220c75d3b3b530 assets/matscraft/models/block/magic_block.json
 1e1cdab136d0394240e1265e33668fea86470488 assets/matscraft/models/item/lowpolyduck.json
+5a22a5025058729309f24f1427220c75d3b3b530 assets/matscraft/models/block/magic_block.json
 c11a3dee8c49514506720657f10ac692f4bffab6 assets/matscraft/blockstates/legendary_mats_ore.json
 32f47cd6d9c417f7616e682b7446e27be153fd96 assets/matscraft/models/item/rare_mats_ore.json
 609aadad617e4f7e991b60940deacc27211dce0f assets/matscraft/blockstates/uncommon_mats_ore.json
@@ -15,8 +15,8 @@ b37f9c64df7824ebca7d3117c9e93682d4d2e326 assets/matscraft/models/block/common_ma
 a144ad21aec685833dea92c8bf3d6e14565b5047 assets/matscraft/blockstates/epic_mats_ore.json
 bf39e1483d378b5ff1486a85f6340137867111e7 assets/matscraft/models/block/epic_mats_ore.json
 9c364b9e90c4e0924dcbbcfd7c584c8818a0f959 assets/matscraft/blockstates/rare_mats_ore.json
-9080ff50ed9ab89145c8a0e1328c3f69a61685ab assets/matscraft/models/item/chainsaw.json
 ccfadfb6d2747796e72785e8e83986e9be07c039 assets/matscraft/models/item/common_mats_ore.json
+9080ff50ed9ab89145c8a0e1328c3f69a61685ab assets/matscraft/models/item/chainsaw.json
 ec6383e719e1449f58da2d70231e108da3a3fd7f assets/matscraft/models/item/mats.json
 f1519fec34bf42667843d7391bd9cc5187b48404 assets/matscraft/models/item/legendary_mats_ore.json
 b0869a710ca4466b4cf1ccf692159667c6aa8fa9 assets/matscraft/models/block/rare_mats_ore.json
