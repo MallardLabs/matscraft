@@ -40,5 +40,29 @@
     "sounds": [
       "matscraft:magic_block_fall"
     ]
+  },
+  "bar_brawl": {
+    "sounds": [
+      {
+        "name": "matscraft:bar_brawl",
+        "stream": true
+      }
+    ]
+  },
+  "brendan_mezong": {
+    "sounds": [
+      {
+        "name": "matscraft:brendan_mezong",
+        "stream": true
+      }
+    ]
+  },
+  "nanndo_memememezo": {
+    "sounds": [
+      {
+        "name": "matscraft:nanndo_memememezo",
+        "stream": true
+      }
+    ]
   }
 }

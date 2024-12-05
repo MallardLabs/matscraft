@@ -19,7 +19,12 @@ public class ModItemGroups {
                         entries.add((ModItems.MATS));
                         entries.add((ModItems.MATT_LUONGO));
                         entries.add((ModItems.LOWPOLYDUCK));
+
                         entries.add(ModItems.CHAINSAW);
+
+                        entries.add(ModItems.BAR_BRAWL_MUSIC_DISC);
+                        entries.add(ModItems.BRENDAN_MEZONG_MUSIC_DISC);
+                        entries.add(ModItems.NANNDO_MEMEMEMEZO_MUSIC_DISC);
 
                     }).build());
 

@@ -29,6 +29,11 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.MATS, Models.GENERATED);
         itemModelGenerator.register(ModItems.MATT_LUONGO, Models.GENERATED);
         itemModelGenerator.register(ModItems.LOWPOLYDUCK, Models.GENERATED);
+
         itemModelGenerator.register(ModItems.CHAINSAW, Models.GENERATED);
+
+        itemModelGenerator.register(ModItems.BAR_BRAWL_MUSIC_DISC, Models.GENERATED);
+        itemModelGenerator.register(ModItems.BRENDAN_MEZONG_MUSIC_DISC, Models.GENERATED);
+        itemModelGenerator.register(ModItems.NANNDO_MEMEMEMEZO_MUSIC_DISC, Models.GENERATED);
     }
 }
