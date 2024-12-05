@@ -14,6 +14,9 @@
   "block.matscraft.magic_block": "Magic Block",
 
   "itemgroup.matscraft.matsfi_items": "matsFi",
-  "itemgroup.matscraft.mats_ore_blocks": "mats Ores"
+  "itemgroup.matscraft.mats_ore_blocks": "mats Ores",
+
+  "sounds.matscraft.chainsaw_cut" : "Chainsaw Cut",
+  "sounds.matscraft.chainsaw_pull": "Chainsaw Pull"
 
 }

@@ -1,0 +1,14 @@
+{
+  "chainsaw_cut": {
+    "subtitle": "sounds.matscraft.chainsaw_cut",
+    "sounds": [
+      "matscraft:chainsaw_cut"
+    ]
+  },
+  "chainsaw_pull": {
+    "subtitle": "sounds.matscraft.chainsaw_pull",
+    "sounds": [
+      "matscraft:chainsaw_pull"
+    ]
+  }
+}
