@@ -2,6 +2,7 @@ package com.mallardlabs.matscraft.block;
 
 import com.mallardlabs.matscraft.MatsCraft;
 import com.mallardlabs.matscraft.block.custom.MagicBlock;
+import com.mallardlabs.matscraft.sound.ModSounds;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -37,7 +38,7 @@ public class ModBlocks {
                     AbstractBlock.Settings.create().strength(4f).requiresTool().sounds(BlockSoundGroup.METAL)));
 
     public static final Block MAGIC_BLOCK = registerBlock("magic_block",
-            new MagicBlock(AbstractBlock.Settings.create().strength(1f).requiresTool()));
+            new MagicBlock(AbstractBlock.Settings.create().strength(1f).requiresTool().sounds(ModSounds.MAGIC_BLOCK_SOUNDS)));
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
