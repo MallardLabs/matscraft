@@ -1,9 +1,11 @@
 package com.mallardlabs.matscraft;
 
 import com.mallardlabs.matscraft.block.ModBlocks;
+import com.mallardlabs.matscraft.datagen.ModWorldGenerator;
 import com.mallardlabs.matscraft.item.ModItemGroups;
 import com.mallardlabs.matscraft.item.ModItems;
 import com.mallardlabs.matscraft.sound.ModSounds;
+import com.mallardlabs.matscraft.world.gen.ModWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -18,6 +20,9 @@ public class MatsCraft implements ModInitializer {
 		ModItemGroups.registerItemGroups();
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
+
 		ModSounds.registerSounds();
+
+		ModWorldGeneration.generateModWorldGeneration();
 	}
 }
