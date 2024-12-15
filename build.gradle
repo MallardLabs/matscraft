@@ -18,6 +18,10 @@ repositories {
 	// for more information about repositories.
 }
 
+repositories {
+	mavenCentral()
+}
+
 fabricApi {
 	configureDataGeneration()
 }
@@ -27,10 +31,12 @@ dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	modImplementation 'org.java-websocket:Java-WebSocket:1.5.3'
+
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	
+
 }
 
 processResources {
@@ -57,7 +63,7 @@ java {
 
 jar {
 	from("LICENSE") {
-		rename { "${it}_${project.base.archivesName.get()}"}
+		rename { "${it}_${project.base.archivesName.get()}" }
 	}
 }
 
@@ -75,6 +81,6 @@ publishing {
 		// Add repositories to publish to here.
 		// Notice: This block does NOT have the same function as the block in the top level.
 		// The repositories here will be used for publishing your artifact, not for
-		// retrieving dependencies.
+		// retrieving dependencie.
 	}
 }
