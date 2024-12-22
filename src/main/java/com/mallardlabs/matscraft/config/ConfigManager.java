@@ -4,9 +4,9 @@ public class ConfigManager {
     /*
      * Update this with your postgress confirguration
      */
-    public static String PG_URL = "jdbc:postgresql://aws-0-ap-southeast-1.pooler.supabase.com:5432/postgres?options=-c%20search_path%3Dpublic";
-    public static  String PG_USER = "postgres.sutmspwrjwhatkyvjtuk";
-    public static String PG_PW = "c6qnHHqvik5LAhvf";
+    public static String PG_URL = "";
+    public static  String PG_USER = "";
+    public static String PG_PW = "";
     /*
      * Update the database every 100 block breaks
      * Default value is 100.
