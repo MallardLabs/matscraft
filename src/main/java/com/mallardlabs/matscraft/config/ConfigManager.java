@@ -1,14 +1,12 @@
 package com.mallardlabs.matscraft.config;
 
 public class ConfigManager {
-    private static String baseURL = "http://localhost:3000";
-    private static String websocketUrl = "ws://localhost:3000"; // Default URL
-
-    public static String getBaseURL() {
-        return baseURL;
-    }
-    public static String getWebSocketUrl() {
-        return websocketUrl;
-    }
-
+    public static String PG_URL = "jdbc:postgresql://aws-0-ap-southeast-1.pooler.supabase.com:5432/postgres?options=-c%20search_path%3Dpublic";
+    public static  String PG_USER = "postgres.sutmspwrjwhatkyvjtuk";
+    public static String PG_PW = "c6qnHHqvik5LAhvf";
+    /*
+     * Update the database every 100 block breaks
+     * Default value is 100.
+     */
+    public static Integer BLOCK_BREAK_BATCH = 100;
 }
