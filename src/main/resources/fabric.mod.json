@@ -18,6 +18,7 @@
 		"main": [
 			"com.mallardlabs.matscraft.MatsCraft"
 		],
+
 		"client": [
 			"com.mallardlabs.matscraft.MatsCraftClient"
 		],
