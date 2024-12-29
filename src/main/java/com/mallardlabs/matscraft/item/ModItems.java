@@ -3,7 +3,6 @@ package com.mallardlabs.matscraft.item;
 import com.mallardlabs.matscraft.MatsCraft;
 import com.mallardlabs.matscraft.item.custom.ChainsawItem;
 import com.mallardlabs.matscraft.sound.ModSounds;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.Item;

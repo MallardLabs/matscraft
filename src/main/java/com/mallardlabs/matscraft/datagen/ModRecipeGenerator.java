@@ -1,7 +1,6 @@
 package com.mallardlabs.matscraft.datagen;
 
 import com.mallardlabs.matscraft.MatsCraft;
-import com.mallardlabs.matscraft.block.ModBlocks;
 import com.mallardlabs.matscraft.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;

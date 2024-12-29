@@ -16,12 +16,12 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.mallardlabs.matscraft.MatsCraft"
-		],
-
+            "com.mallardlabs.matscraft.MatsCraft"
+        ],
 		"client": [
 			"com.mallardlabs.matscraft.MatsCraftClient"
 		],
+
 		"fabric-datagen": [
 			"com.mallardlabs.matscraft.MatsCraftDataGenerator"
 		]
