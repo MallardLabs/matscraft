@@ -6,6 +6,7 @@
 - [x] Show Mats Balance
 
 ## Quick Preview
+<img src="https://i.ibb.co.com/tDKpqqs/main.png" width=100%/>
+<img src="https://i.ibb.co.com/KKgBQh8/ezgif-5-f12724c109.webp" width=100%/>
 
-![App Screenshot](https://i.ibb.co.com/KKgBQh8/ezgif-5-f12724c109.webp)
 
