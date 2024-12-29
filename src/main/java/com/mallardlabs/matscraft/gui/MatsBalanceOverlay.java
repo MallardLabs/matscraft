@@ -1,160 +1,120 @@
 package com.mallardlabs.matscraft.gui;
 
-import com.mallardlabs.matscraft.config.ConfigManager;
+import com.mallardlabs.matscraft.MatsCraft;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.RenderTickCounter;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-/**
- * The MatsBalanceOverlay class manages and displays the player's Mats balance on the HUD.
- * It also synchronizes the player's balance with the database when the player spawns for the first time.
- */
 public class MatsBalanceOverlay {
-    // Stores the player's balance globally for HUD rendering
+    private static final Identifier MATS_ICON = Identifier.of(MatsCraft.MOD_ID, "textures/item/mats.png");
+    private static final Identifier DISCORD_ICON = Identifier.of(MatsCraft.MOD_ID, "textures/gui/discord.png");
+    private static final Identifier PLAYER_ICON = Identifier.of(MatsCraft.MOD_ID, "textures/gui/minecraft.png");
+    private static final Identifier COORDIANTE_ICON = Identifier.of(MatsCraft.MOD_ID, "textures/gui/compas.png");
     public static int playerBalance = 0;
-
-    // Flag to track if the player has spawned for the first time
+    public static String DiscordUsername = "Not Linked";
     private boolean isFirstSpawn = true;
 
-    /**
-     * Initializes the MatsBalanceOverlay by registering event listeners.
-     * Should be called manually during mod initialization.
-     */
-    public void initialize() {
-        // Register HUD rendering callback
-        HudRenderCallback.EVENT.register(this::renderMatsBalance);
+    private static final int MARGIN_X = 10;
+    private static final int MARGIN_Y = 10;
+    private static final int MARGIN_BETWEEN_ELEMENTS = 5;
 
-        // Register client tick event for player spawn detection
+    private static final int BACKGROUND_WIDTH = 110;
+    private static final int BACKGROUND_HEIGHT = 12;
+    private static final int TEXT_COLOR = 0xFFFFFF;
+    private static final int BORDER_COLOR = 0x66000000; // White border color
+
+    public void initialize() {
+        HudRenderCallback.EVENT.register(this::renderOverlay);
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (client.player != null && isFirstSpawn) {
-                isFirstSpawn = false; // Mark first spawn as handled
-                syncAccount(client.player.getUuidAsString()); // Sync account with the database
+                isFirstSpawn = false;
             }
         });
     }
 
-    /**
-     * Renders the Mats balance overlay on the player's HUD.
-     *
-     * @param context     The rendering context.
-     * @param tickCounter The tick counter for rendering.
-     */
-    private void renderMatsBalance(DrawContext context, RenderTickCounter tickCounter) {
+    private void renderOverlay(DrawContext context, RenderTickCounter tickDelta) {
         MinecraftClient client = MinecraftClient.getInstance();
-        PlayerEntity player = client.player;
 
-        if (player != null && !isFirstSpawn) {
+        if (client.player != null && !isFirstSpawn) {
             TextRenderer textRenderer = client.textRenderer;
+            int x = MARGIN_X;
+            int y = MARGIN_Y;
 
-            int x = 10; // X position of the overlay
-            int y = 10; // Y position of the overlay
-            int width = 80; // Width of the background
-            int height = 20; // Height of the background
+            // Draw player name
+            drawSection(context, textRenderer, client.player.getName().getString(), x, y, BACKGROUND_HEIGHT);
+            y += BACKGROUND_HEIGHT + MARGIN_BETWEEN_ELEMENTS;
 
-            // Draw a semi-transparent background for better readability
-            context.fill(x - 5, y - 5, x + width, y + height, 0x80000000);
+            drawDiscordUsername(context ,textRenderer,DiscordUsername,x,y);
+            y += BACKGROUND_HEIGHT + MARGIN_BETWEEN_ELEMENTS;
+            // Draw Mats Balance
+            drawMatsBalance(context, textRenderer, playerBalance, x, y);
+            y += BACKGROUND_HEIGHT + MARGIN_BETWEEN_ELEMENTS;
 
-            // Render "Your Balance" label
-            context.drawText(textRenderer, "Your Balance", x, y, 0xFFFFFF, true);
-
-            // Render the player's Mats balance
-            context.drawText(textRenderer, playerBalance + " Mats", x, y + 10, 0xFFFF00, true);
+            // Draw coordinates
+            drawCoordinates(context, textRenderer, client.player.getX(), client.player.getY(), client.player.getZ(), x, y);
         }
     }
 
-    /**
-     * Synchronizes the player's account by fetching their balance from the database.
-     *
-     * @param playerUuid The UUID of the player.
-     */
-    private void syncAccount(String playerUuid) {
-        String dbUrl = ConfigManager.PG_URL;
-        String dbUser = ConfigManager.PG_USER;
-        String dbPassword = ConfigManager.PG_PW;
-
-        String userCheckQuery = "SELECT minecraft_id FROM users WHERE minecraft_id = ?";
-
-        try (Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword)) {
-            try (PreparedStatement stmt = conn.prepareStatement(userCheckQuery)) {
-                stmt.setString(1, playerUuid);
-
-                try (ResultSet rs = stmt.executeQuery()) {
-                    if (rs.next()) {
-                        // Player found in users table, fetch their balance
-                        updateBalanceFromDatabase(playerUuid, conn);
-                    } else {
-                        // Player not found, display error message
-                        sendPlayerMessage("Sync Failed, Account Not Linked", Formatting.RED);
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            sendPlayerMessage("Error syncing account: " + e.getMessage(), Formatting.RED);
-        }
+    private void drawSection(DrawContext context, TextRenderer textRenderer, String text, int x, int y, int height) {
+        // Draw background, text, and border for sections
+        drawBackground(context, x, y, BACKGROUND_WIDTH, height);
+        drawPlayerIcon(context,x,y-3);
+        context.drawText(textRenderer, text, x + 14, y + 2, TEXT_COLOR, false);
+        drawBorder(context, x, y, BACKGROUND_WIDTH, height);
+    }
+    private void drawDiscordUsername(DrawContext context, TextRenderer textRenderer, String DiscordUsername, int x, int y) {
+        drawBackground(context, x, y, BACKGROUND_WIDTH, BACKGROUND_HEIGHT);
+        drawDiscordIcon(context, x, y);
+        context.drawText(textRenderer, DiscordUsername, x + 14, y + 3, TEXT_COLOR, false);
+        drawBorder(context, x, y, BACKGROUND_WIDTH, BACKGROUND_HEIGHT);
+    }
+    private void drawMatsBalance(DrawContext context, TextRenderer textRenderer, int balance, int x, int y) {
+        // Draw background, mats icon, balance text, and border
+        drawBackground(context, x, y, BACKGROUND_WIDTH, BACKGROUND_HEIGHT);
+        drawMatsIcon(context, x, y);
+        context.drawText(textRenderer, String.valueOf(balance), x + 14, y + 2, TEXT_COLOR, false);
+        drawBorder(context, x, y, BACKGROUND_WIDTH, BACKGROUND_HEIGHT);
     }
 
-    /**
-     * Fetches the player's balance from the database and updates the global balance.
-     *
-     * @param playerUuid The UUID of the player.
-     * @param conn       The active database connection.
-     */
-    private void updateBalanceFromDatabase(String playerUuid, Connection conn) {
-        String query = "SELECT balance FROM mats_balance WHERE minecraft_id = ?";
-
-        try (PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, playerUuid);
-
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    int balance = rs.getInt("balance");
-                    playerBalance = balance; // Update the global balance
-
-                    sendPlayerMessage("Your balance has been updated: " + balance, Formatting.GREEN);
-                    sendPlayerMessage("Welcome back, " + getPlayerName() + "!", Formatting.GOLD);
-                } else {
-                    sendPlayerMessage("No balance found for your account.", Formatting.RED);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            sendPlayerMessage("Error fetching balance from the database.", Formatting.RED);
-        }
+    private void drawCoordinates(DrawContext context, TextRenderer textRenderer, double x, double y, double z, int drawX, int drawY) {
+        // Draw background, coordinates text, and border
+        drawBackground(context, drawX, drawY, BACKGROUND_WIDTH, BACKGROUND_HEIGHT);
+        drawCoordinateIcon(context,drawX,drawY);
+        String coordinates = String.format("%.1f, %.1f, %.1f", x, y, z);
+        context.drawText(textRenderer, coordinates, drawX + 14, drawY + 3, TEXT_COLOR, false);
+        drawBorder(context, drawX, drawY, BACKGROUND_WIDTH, BACKGROUND_HEIGHT);
     }
 
-    /**
-     * Sends a message to the player in-game.
-     *
-     * @param message  The message text.
-     * @param color    The color formatting for the message.
-     */
-    private void sendPlayerMessage(String message, Formatting color) {
-        MinecraftClient client = MinecraftClient.getInstance();
-        if (client.player != null) {
-            client.player.sendMessage(Text.literal(message).formatted(color), false);
-        }
+    private void drawBackground(DrawContext context, int x, int y, int width, int height) {
+        // Draw the background with dark gray color
+        context.fill(x, y , x + width, y + height, 0x66000000); // Dark gray background
     }
 
-    /**
-     * Retrieves the player's name from the Minecraft client.
-     *
-     * @return The player's name as a string.
-     */
-    private String getPlayerName() {
-        MinecraftClient client = MinecraftClient.getInstance();
-        return client.player != null ? client.player.getName().getString() : "Player";
+    private void drawMatsIcon(DrawContext context, int x, int y) {
+        int iconSize = 9;
+        context.drawTexture(MATS_ICON, x + 2, y + 1, 0, 0, iconSize, iconSize, iconSize, iconSize);
+    }
+    private void drawDiscordIcon(DrawContext context, int x, int y){
+        int iconSize = 9;
+        context.drawTexture(DISCORD_ICON, x + 2, y + 2, 0, 0, iconSize, iconSize, iconSize, iconSize);
+    }
+    private void drawPlayerIcon(DrawContext context, int x, int y){
+        int iconSize = 9;
+        context.drawTexture(PLAYER_ICON, x + 2, y + 4, 0, 0, iconSize, iconSize, iconSize, iconSize);
+    }
+    private void drawCoordinateIcon(DrawContext context, int x, int y){
+        int iconSize = 9;
+        context.drawTexture(COORDIANTE_ICON, x + 2, y + 2, 0, 0, iconSize, iconSize, iconSize, iconSize);
+    }
+    private void drawBorder(DrawContext context, int x, int y, int width, int height) {
+        // Draw border around the background with a white color
+        context.fill(x, y - 2, x + width, y, BORDER_COLOR); // Top border
+        context.fill(x, y + height, x + width, y + height + 2, BORDER_COLOR); // Bottom border
+        context.fill(x - 2, y, x, y + height, BORDER_COLOR); // Left border
+        context.fill(x + width, y, x + width + 2, y + height, BORDER_COLOR); // Right border
     }
 }
