@@ -1,5 +1,6 @@
 package com.mallardlabs.matscraft.ws;
 
+import com.mallardlabs.matscraft.MatsCraft;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 
@@ -34,12 +35,12 @@ public final class WebSocketClientHandler extends WebSocketClient {
                         URI serverUri = new URI(uri != null ? uri : DEFAULT_URI);
                         instance = new WebSocketClientHandler(serverUri);
                         instance.connect();
-                        System.out.printf("WebSocket initialized and connecting to %s%n", serverUri);
+                        MatsCraft.LOGGER.info("WebSocket initialized and connecting to %s%n", serverUri);
                     }
                 }
             }
         } catch (Exception e) {
-            System.err.printf("Failed to initialize WebSocket: %s%n", e.getMessage());
+            MatsCraft.LOGGER.error("Failed to initialize WebSocket: %s%n", e.getMessage());
             e.printStackTrace();
         }
     }
@@ -62,22 +63,23 @@ public final class WebSocketClientHandler extends WebSocketClient {
         WebSocketClientHandler client = WebSocketClientHandler.getInstance();
         if (client != null && client.isOpen()) {
             client.send(message);
-            System.out.printf("Message sent: %s%n", message);
+            MatsCraft.LOGGER.info("Message sent: %s%n", message);
         } else {
-            System.err.println("WebSocket is not open. Cannot send message.");
+            MatsCraft.LOGGER.warn("WebSocket is not open. Cannot send message.");
+
         }
     }
 
     @Override
     public void onOpen(ServerHandshake handshake) {
-        System.out.println("Connected to WebSocket server.");
+        MatsCraft.LOGGER.info("Connected to WebSocket server.");
         isReconnecting = false;
         reconnectAttempts = 0; // Reset reconnect attempts on successful connection
     }
 
     @Override
     public void onMessage(String message) {
-        System.out.printf("Message from server: %s%n", message);
+        MatsCraft.LOGGER.info("Message from server: %s%n", message);
         if (messageCallback != null) {
             messageCallback.onMessage(message);
             messageCallback = null; // Reset callback after use
@@ -86,7 +88,7 @@ public final class WebSocketClientHandler extends WebSocketClient {
 
     @Override
     public void onClose(int code, String reason, boolean remote) {
-        System.out.printf("WebSocket connection closed (Code: %d, Reason: %s, Remote: %s)%n", code, reason, remote);
+        MatsCraft.LOGGER.warn("WebSocket connection closed (Code: %d, Reason: %s, Remote: %s)%n", code, reason, remote);
         if (!isReconnecting && reconnectAttempts < MAX_RECONNECT_ATTEMPTS) {
             new Thread(this::attemptReconnect).start(); // Start reconnection in new thread
         }
@@ -94,7 +96,7 @@ public final class WebSocketClientHandler extends WebSocketClient {
 
     @Override
     public void onError(Exception ex) {
-        System.err.printf("WebSocket error: %s%n", ex.getMessage());
+        MatsCraft.LOGGER.warn("WebSocket error: %s%n", ex.getMessage());
         ex.printStackTrace();
     }
 
@@ -105,19 +107,19 @@ public final class WebSocketClientHandler extends WebSocketClient {
         isReconnecting = true;
         while (reconnectAttempts < MAX_RECONNECT_ATTEMPTS && !isOpen()) {
             reconnectAttempts++;
-            System.out.printf("Attempting to reconnect... (Attempt %d/%d)%n", 
+            MatsCraft.LOGGER.warn("Attempting to reconnect... (Attempt %d/%d)%n",
                             reconnectAttempts, MAX_RECONNECT_ATTEMPTS);
             try {
                 instance.reconnect();
                 Thread.sleep(RECONNECT_DELAY);
             } catch (Exception e) {
-                System.err.printf("Reconnect attempt %d failed: %s%n", 
+                MatsCraft.LOGGER.warn("Reconnect attempt %d failed: %s%n",
                                 reconnectAttempts, e.getMessage());
             }
         }
         
         if (!isOpen()) {
-            System.err.println("Failed to reconnect after maximum attempts.");
+            MatsCraft.LOGGER.warn("Failed to reconnect after maximum attempts.");
             isReconnecting = false;
         }
     }

@@ -8,8 +8,8 @@
 		"Me!"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://mallardlabs.xyz",
+		"sources": "https://github.com/MallardLabs/matsCraft"
 	},
 	"license": "MIT",
 	"icon": "assets/matscraft/icon.png",
