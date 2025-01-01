@@ -1,4 +1,4 @@
-package com.mallardlabs.matscraft.gui;
+package com.mallardlabs.matscraft.client.hud;
 
 import com.mallardlabs.matscraft.MatsCraft;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
